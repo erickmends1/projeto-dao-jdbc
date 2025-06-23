@@ -39,10 +39,31 @@ public class Program {
         employeeDao.insert(newEmployee);
         System.out.println("Insert completed! new id = " + newEmployee.getId());
 
-
         System.out.println("\n=== TEST 4 : department insert ===");
-        Department newDepartment = new Department(null,"Desenvolvimento");
+        Department newDepartment = new Department(null,"TV");
         departmentDao.insert(newDepartment);
         System.out.println("Insert completed! new id = " + newDepartment.getId());
+
+        System.out.println("\n=== TEST 5 : employee update ===");
+        employee = employeeDao.findById(13);
+        employee.setDepartment(departmentDao.findById(4));
+        employee.setEmail("erickmendes@gmail.com");
+        employeeDao.update(employee);
+        System.out.println("Update completed!");
+
+        System.out.println("\n=== TEST 5 : department update ===");
+        department = departmentDao.findById(3);
+        department.setName("FrontEnd");
+        departmentDao.update(department);
+        System.out.println("Update completed!");
+
+        System.out.println("\n=== TEST 6 : employee delete ===");
+        employeeDao.deleteById(7);
+        System.out.println("Deleted completed!");
+
+        System.out.println("\n=== TEST 6 : department delete ===");
+        departmentDao.deleteById(5);
+        System.out.println("Deleted completed!");
+
     }
 }

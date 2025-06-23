@@ -6,6 +6,7 @@ import model.dao.EmployeeDao;
 import model.entities.Department;
 import model.entities.Employee;
 
+import java.net.IDN;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,12 +54,45 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 
     @Override
     public void update(Employee obj) {
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(
+                    "UPDATE employee SET Name = ?, Email = ?, BaseSalary = ?, DepartmentId = ? " +
+                            "WHERE Id = ?");
+            st.setString(1, obj.getName());
+            st.setString(2, obj.getEmail());
+            st.setDouble(3, obj.getBaseSalary());
+            st.setInt(4, obj.getDepartment().getId());
+            st.setInt(5, obj.getId());
 
+            st.executeUpdate();
+
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(
+                    "DELETE FROM employee " +
+                            "WHERE Id = ?");
 
+            st.setInt(1, id);
+
+            st.executeUpdate();
+
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override

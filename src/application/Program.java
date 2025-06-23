@@ -32,5 +32,17 @@ public class Program {
         System.out.println("\n=== TEST 3 : department findAll ===");
         List<Department> listDepartment = departmentDao.findAll();
         listDepartment.forEach(System.out::println);
+
+        
+        System.out.println("\n=== TEST 4 : employee insert ===");
+        Employee newEmployee = new Employee(null, "Erick Mendes", "erick@gmail.com", 3200.00,department);
+        employeeDao.insert(newEmployee);
+        System.out.println("Insert completed! new id = " + newEmployee.getId());
+
+
+        System.out.println("\n=== TEST 4 : department insert ===");
+        Department newDepartment = new Department(null,"Desenvolvimento");
+        departmentDao.insert(newDepartment);
+        System.out.println("Insert completed! new id = " + newDepartment.getId());
     }
 }

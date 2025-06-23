@@ -6,10 +6,7 @@ import model.dao.EmployeeDao;
 import model.entities.Department;
 import model.entities.Employee;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +22,33 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 
     @Override
     public void insert(Employee obj) {
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(
+                    "INSERT INTO employee (Name, Email, BaseSalary, DepartmentId) " +
+                        "VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            st.setString(1, obj.getName());
+            st.setString(2, obj.getEmail());
+            st.setDouble(3, obj.getBaseSalary());
+            st.setInt(4, obj.getDepartment().getId());
 
+            int rowsAffected = st.executeUpdate();
+
+            if (rowsAffected > 0){
+                ResultSet rs = st.getGeneratedKeys();
+                if (rs.next()){
+                    int id = rs.getInt(1);
+                    obj.setId(id);
+                }
+            }else {
+                throw new DbException("Error! could not perform the incertion");
+            }
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override

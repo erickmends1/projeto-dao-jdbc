@@ -28,7 +28,7 @@ Desenvolver um sistema desktop em Java para gerenciar funcionários e departamen
 
 | Atributo     | Tipo         | Descrição                      |
 |--------------|--------------|-------------------------------|
-| id           | Long         | Identificador único           |
+| id           | Integer      | Identificador único           |
 | nome         | String       | Nome completo                 |
 | email        | String       | E-mail corporativo            |
 | salario      | Double       | Salário mensal                |
@@ -40,7 +40,7 @@ Desenvolver um sistema desktop em Java para gerenciar funcionários e departamen
 
 | Atributo | Tipo   | Descrição               |
 |----------|--------|-------------------------|
-| id       | Long   | Identificador único     |
+| id       | Integer| Identificador único     |
 | nome     | String | Nome do departamento    |
 
 ---

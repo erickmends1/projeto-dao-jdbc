@@ -6,16 +6,14 @@ Sistema simples de gerenciamento de **Funcionários** e **Departamentos** com fu
 
 ## ⚙️ Tecnologias Utilizadas
 
-- **Linguagem:** Java (17+)
+- **Linguagem:** Java 17
 - **Banco de Dados:** MySQL
 - **Arquitetura:** MVC (Model-View-Controller)
-- **Padrões:** DAO, DTO
-- **IDE Sugerida:** IntelliJ IDEA ou Eclipse
+- **Padrões:** DAO
+- **IDE Sugerida:** IntelliJ IDEA
 - **Ferramentas Auxiliares:**
   - JDBC
-  - Maven
-  - Lombok (opcional)
-
+    
 ---
 
 ## 🎯 Objetivo
